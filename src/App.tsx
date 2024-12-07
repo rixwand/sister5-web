@@ -5,12 +5,12 @@ import Navbar from "./Component/Navbar.tsx";
 const App = () => {
 
   return (
-    <div>
+    <>
       <Navbar/>
       <Routes>
         <Route path={"/"} element={<Home/>}/>
       </Routes>
-    </div>
+    </>
   )
 }
 

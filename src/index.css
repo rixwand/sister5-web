@@ -6,7 +6,7 @@
 
 @layer components {
     .active-nav::after {
-        @apply content-[''] w-5 -bottom-[0.10rem] rounded-md translate-x-1/2 right-1/2 lg:border-light absolute border-b-2;
+        @apply content-[''] w-5 -bottom-[0.10rem] rounded-md translate-x-1/2 right-1/2 border-accent absolute border-b-2 hidden lg:flex
     }
 
     .active-nav {
@@ -14,8 +14,9 @@
     }
 }
 
-@layer utilities {
+@layer base {
     .text-title {
         font-size: calc(1.425rem + 2.1vw);
+        line-height: calc(1.425rem + 3vw);
     }
 }

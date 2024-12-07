@@ -12,11 +12,39 @@
     .active-nav {
         @apply text-light
     }
+
+    .icon-text {
+        @apply font-poppins text-primary text-xs lg:text-sm mt-3
+    }
+
+    .icon {
+        @apply lg:p-6 p-3 rounded-lg lg:rounded-2xl
+    }
+
+    .image-container {
+        @apply relative w-1/4 h-32 lg:w-1/6 lg:h-[26rem] justify-center
+    }
+
+    .image-wrapper {
+        @apply items-end flex overflow-hidden rounded-full w-full h-full
+    }
 }
 
 @layer base {
     .text-title {
-        font-size: calc(1.425rem + 2.1vw);
-        line-height: calc(1.425rem + 3vw);
+        font-size: calc(1.5rem + 3vw);
+        line-height: calc(1.5rem + 3.9vw);
+    }
+
+    .border-offset-tl::before {
+        @apply content-[''] absolute border lg:border-2 border-background rounded-full bottom-1 lg:bottom-2 right-1 lg:right-2 w-full h-full -z-10 block
+    }
+
+    .border-offset-tr::before {
+        @apply content-[''] absolute border lg:border-2 border-background rounded-full bottom-1 lg:bottom-2 left-1 lg:left-2 w-full h-full -z-10 block
+    }
+
+    .border-offset-t::before {
+        @apply content-[''] absolute border lg:border-2 border-background rounded-full bottom-1 lg:bottom-2 w-full h-full -z-10 block
     }
 }

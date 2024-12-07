@@ -1,10 +1,26 @@
-import {NavLink} from "react-router";
-import {MutableRefObject, useRef, useState} from "react";
+import {NavLink, useLocation} from "react-router";
+import {MutableRefObject, useEffect, useRef, useState} from "react";
 
 const Navbar = () => {
   const [checked, setChecked] = useState(false);
-
+  const navlinks = [
+    {name: "Home", link: "/", active: true},
+    {name: "About Us", link: "/about", active: false},
+    {name: "Contact Us", link: "/contact", active: false},
+  ];
+  const [navItem, setNavItem] = useState(navlinks);
   const checkbox: MutableRefObject<HTMLInputElement | null> = useRef(null)
+
+  const url = useLocation()
+
+  useEffect(() => {
+    const newNavItem = navItem.map((item) => {
+      if (item.link == url.pathname) return {...item, active: true};
+      return {...item, active: false};
+    });
+    setNavItem(newNavItem);
+  }, [url.pathname]);
+
   const showNavbar = () => {
     if (checkbox.current) {
       checkbox.current.click();
@@ -38,14 +54,13 @@ const Navbar = () => {
       </div>
 
       <h1 className={"text-2xl font-bold font-poppins text-light"}>Sister5</h1>
-      <div className={`flex lg:static lg:flex-row lg:gap-x-10 lg:justify-between lg:items-center lg:translate-x-0 fixed flex-col bg-primary top-[4.3rem] bottom-0 left-0 gap-y-6 pl-4 pr-12 transition-all duration-300
+      <div className={`flex lg:static lg:flex-row lg:gap-x-10 lg:justify-between lg:items-center lg:translate-x-0 fixed flex-col bg-primary top-[4.2rem] bottom-0 left-0 gap-y-6 pl-4 pr-12 transition-all duration-300
         ${!checked ? "-translate-x-44" : "translate-x-0"}
       `}>
-        <NavLink className={"relative active-nav font-poppins font-medium"} to={"/"}>Homes</NavLink>
-        <NavLink className={"relative text-inactive font-poppins font-medium"} to={"/"}>About
-          Us</NavLink>
-        <NavLink className={"relative text-inactive font-poppins font-medium"} to={"/"}>Contact
-          Us</NavLink>
+        {navItem.map(item => (
+          <NavLink className={`${item.active ? "active-nav" : "text-inactive"} relative font-poppins font-medium`}
+                   to={item.link}>{item.name}</NavLink>
+        ))}
       </div>
       <button
         className={"bg-accent lg:text-base text-sm lg:ml-0 ml-auto px-5 py-2 font-poppins font-semibold rounded-full text-primary"}>Sign

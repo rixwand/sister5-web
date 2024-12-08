@@ -13,8 +13,15 @@ import Wave4 from '../assets/wave4.svg'
 import Wave3 from '../assets/wave3.svg'
 import Wave2 from '../assets/wave2.svg'
 import Wave from '../assets/wave.svg'
+import {useEffect, useState} from "react";
 
 const Home = () => {
+  const [size, setSize] = useState<number>(window.screen.width)
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setSize(window.screen.width)
+    })
+  });
   return (
     <>
       <div className={"container min-w-full lg:pt-32 pt-24 justify-center bg-primary relative"}>
@@ -38,9 +45,9 @@ const Home = () => {
             <span className={"font-poppins text-light lg:text-xl text-sm font-medium"}>Watch Video</span>
           </button>
         </div>
-        <div className={"h-24 lg:h-72"}></div>
+        <div style={{height: size < 800 ? size * 30 / 100 : size * 15 / 100 + "px"}}></div>
         <div
-          className={"px-7 lg:px-0 lg:container absolute -bottom-16 lg:-bottom-56 z-20 left-0 right-0 flex flex-row items-center justify-center lg:gap-x-2 gap-x-1"}>
+          className={"px-7 lg:px-0 lg:container absolute -bottom-16 md:-bottom-32 lg:-bottom-56 z-20 left-0 right-0 flex flex-row items-center justify-center lg:gap-x-2 gap-x-1"}>
           <span
             className={'image-container lg:mt-24 mt-14 border-offset-tl'}>
           <span className={'image-wrapper'}>
